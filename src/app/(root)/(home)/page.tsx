@@ -49,35 +49,29 @@ export default function HomePage() {
                 <h2 className="text-3xl font-bold text-center">Key Features</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <Card className="border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
-                        <CardContent className="p-6 space-y-4">
-                            <div className="h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                                <Users className="h-6 w-6" />
-                            </div>
-                            <h3 className="text-xl font-semibold">Connect</h3>
-                            <p className="text-muted-foreground">Connect with top talent and recruiters in your industry</p>
-                        </CardContent>
-                    </Card>
+                    <div className="rounded-xl p-6 bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 shadow-sm">
+                        <div className="h-12 w-12 rounded-full bg-blue-200 dark:bg-blue-800/50 flex items-center justify-center text-blue-700 dark:text-blue-300 mb-4">
+                            <Users className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-100">Connect</h3>
+                        <p className="text-blue-700 dark:text-blue-300">Connect with top talent and recruiters in your industry</p>
+                    </div>
 
-                    <Card className="border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
-                        <CardContent className="p-6 space-y-4">
-                            <div className="h-12 w-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
-                                <GraduationCap className="h-6 w-6" />
-                            </div>
-                            <h3 className="text-xl font-semibold">Learn</h3>
-                            <p className="text-muted-foreground">Access resources to improve your skills and knowledge</p>
-                        </CardContent>
-                    </Card>
+                    <div className="rounded-xl p-6 bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 shadow-sm">
+                        <div className="h-12 w-12 rounded-full bg-purple-200 dark:bg-purple-800/50 flex items-center justify-center text-purple-700 dark:text-purple-300 mb-4">
+                            <GraduationCap className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-purple-900 dark:text-purple-100">Learn</h3>
+                        <p className="text-purple-700 dark:text-purple-300">Access resources to improve your skills and knowledge</p>
+                    </div>
 
-                    <Card className="border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
-                        <CardContent className="p-6 space-y-4">
-                            <div className="h-12 w-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
-                                <Briefcase className="h-6 w-6" />
-                            </div>
-                            <h3 className="text-xl font-semibold">Grow</h3>
-                            <p className="text-muted-foreground">Take your career to the next level with our tools</p>
-                        </CardContent>
-                    </Card>
+                    <div className="rounded-xl p-6 bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800 shadow-sm">
+                        <div className="h-12 w-12 rounded-full bg-green-200 dark:bg-green-800/50 flex items-center justify-center text-green-700 dark:text-green-300 mb-4">
+                            <Briefcase className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-green-900 dark:text-green-100">Grow</h3>
+                        <p className="text-green-700 dark:text-green-300">Take your career to the next level with our tools</p>
+                    </div>
                 </div>
             </section>
 
@@ -144,101 +138,93 @@ export default function HomePage() {
                 <h2 className="text-3xl font-bold text-center">Powerful Interview Tools</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <Card className="border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
-                        <CardContent className="p-6 space-y-4">
-                            <div className="h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                                <Video className="h-6 w-6" />
-                            </div>
-                            <h3 className="text-xl font-semibold">HD Video Conferencing</h3>
-                            <p className="text-muted-foreground">Crystal clear video and audio for seamless communication with candidates and teams.</p>
-                            <ul className="space-y-2 mt-4">
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Multi-participant support</span>
-                                </li>
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Screen sharing capabilities</span>
-                                </li>
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Recording features</span>
-                                </li>
-                            </ul>
-                        </CardContent>
-                    </Card>
+                    <div className="rounded-xl p-6 bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 shadow-sm">
+                        <div className="h-12 w-12 rounded-full bg-blue-200 dark:bg-blue-800/50 flex items-center justify-center text-blue-700 dark:text-blue-300 mb-4">
+                            <Video className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-100">HD Video Conferencing</h3>
+                        <p className="text-blue-700 dark:text-blue-300">Crystal clear video and audio for seamless communication with candidates and teams.</p>
+                        <ul className="space-y-2 mt-4">
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-blue-700 dark:text-blue-300" />
+                                <span className="text-blue-800 dark:text-blue-200">Multi-participant support</span>
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-blue-700 dark:text-blue-300" />
+                                <span className="text-blue-800 dark:text-blue-200">Screen sharing capabilities</span>
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-blue-700 dark:text-blue-300" />
+                                <span className="text-blue-800 dark:text-blue-200">Recording features</span>
+                            </li>
+                        </ul>
+                    </div>
 
-                    <Card className="border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
-                        <CardContent className="p-6 space-y-4">
-                            <div className="h-12 w-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
-                                <Code className="h-6 w-6" />
-                            </div>
-                            <h3 className="text-xl font-semibold">Interactive Code Editor</h3>
-                            <p className="text-muted-foreground">Evaluate technical skills in real-time with our collaborative code editor.</p>
-                            <ul className="space-y-2 mt-4">
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Real-time collaboration</span>
-                                </li>
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Syntax highlighting for multiple languages</span>
-                                </li>
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Code execution capabilities</span>
-                                </li>
-                            </ul>
-                        </CardContent>
-                    </Card>
+                    <div className="rounded-xl p-6 bg-indigo-100 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 shadow-sm">
+                        <div className="h-12 w-12 rounded-full bg-indigo-200 dark:bg-indigo-800/50 flex items-center justify-center text-indigo-700 dark:text-indigo-300 mb-4">
+                            <Code className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-indigo-900 dark:text-indigo-100">Interactive Code Editor</h3>
+                        <p className="text-indigo-700 dark:text-indigo-300">Evaluate technical skills in real-time with our collaborative code editor.</p>
+                        <ul className="space-y-2 mt-4">
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-indigo-700 dark:text-indigo-300" />
+                                <span className="text-indigo-800 dark:text-indigo-200">Real-time collaboration</span>
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-indigo-700 dark:text-indigo-300" />
+                                <span className="text-indigo-800 dark:text-indigo-200">Syntax highlighting for multiple languages</span>
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-indigo-700 dark:text-indigo-300" />
+                                <span className="text-indigo-800 dark:text-indigo-200">Code execution capabilities</span>
+                            </li>
+                        </ul>
+                    </div>
 
-                    <Card className="border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
-                        <CardContent className="p-6 space-y-4">
-                            <div className="h-12 w-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
-                                <MessagesSquare className="h-6 w-6" />
-                            </div>
-                            <h3 className="text-xl font-semibold">Feedback System</h3>
-                            <p className="text-muted-foreground">Structured feedback collection for better evaluation and comparison.</p>
-                            <ul className="space-y-2 mt-4">
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Customizable evaluation criteria</span>
-                                </li>
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Team collaboration on feedback</span>
-                                </li>
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Historical data analysis</span>
-                                </li>
-                            </ul>
-                        </CardContent>
-                    </Card>
+                    <div className="rounded-xl p-6 bg-teal-100 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 shadow-sm">
+                        <div className="h-12 w-12 rounded-full bg-teal-200 dark:bg-teal-800/50 flex items-center justify-center text-teal-700 dark:text-teal-300 mb-4">
+                            <MessagesSquare className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-teal-900 dark:text-teal-100">Feedback System</h3>
+                        <p className="text-teal-700 dark:text-teal-300">Structured feedback collection for better evaluation and comparison.</p>
+                        <ul className="space-y-2 mt-4">
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-teal-700 dark:text-teal-300" />
+                                <span className="text-teal-800 dark:text-teal-200">Customizable evaluation criteria</span>
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-teal-700 dark:text-teal-300" />
+                                <span className="text-teal-800 dark:text-teal-200">Team collaboration on feedback</span>
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-teal-700 dark:text-teal-300" />
+                                <span className="text-teal-800 dark:text-teal-200">Historical data analysis</span>
+                            </li>
+                        </ul>
+                    </div>
 
-                    <Card className="border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
-                        <CardContent className="p-6 space-y-4">
-                            <div className="h-12 w-12 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
-                                <FileCheck className="h-6 w-6" />
-                            </div>
-                            <h3 className="text-xl font-semibold">Assessment Tools</h3>
-                            <p className="text-muted-foreground">Comprehensive assessment tools to evaluate candidate skills.</p>
-                            <ul className="space-y-2 mt-4">
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Pre-built assessment templates</span>
-                                </li>
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Custom question creation</span>
-                                </li>
-                                <li className="flex gap-2 items-center">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>Automated scoring options</span>
-                                </li>
-                            </ul>
-                        </CardContent>
-                    </Card>
+                    <div className="rounded-xl p-6 bg-amber-100 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 shadow-sm">
+                        <div className="h-12 w-12 rounded-full bg-amber-200 dark:bg-amber-800/50 flex items-center justify-center text-amber-700 dark:text-amber-300 mb-4">
+                            <FileCheck className="h-6 w-6" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-amber-900 dark:text-amber-100">Assessment Tools</h3>
+                        <p className="text-amber-700 dark:text-amber-300">Comprehensive assessment tools to evaluate candidate skills.</p>
+                        <ul className="space-y-2 mt-4">
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-amber-700 dark:text-amber-300" />
+                                <span className="text-amber-800 dark:text-amber-200">Pre-built assessment templates</span>
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-amber-700 dark:text-amber-300" />
+                                <span className="text-amber-800 dark:text-amber-200">Custom question creation</span>
+                            </li>
+                            <li className="flex gap-2 items-center">
+                                <Check className="h-4 w-4 text-amber-700 dark:text-amber-300" />
+                                <span className="text-amber-800 dark:text-amber-200">Automated scoring options</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 

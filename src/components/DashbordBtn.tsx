@@ -11,11 +11,14 @@ function DasboardBtn() {
   const { isCandidate, isLoading } = useUserRole();
   const pathname = usePathname();
   
-  // Only show Dashboard button to non-candidates
-  const showDashboard = !isCandidate && !isLoading;
+  // Only hide Dashboard button from candidates
+  const showDashboard = !isCandidate;
   
   // For root route only
   const isRootRoute = pathname === "/";
+  
+  // Debug dashboard button visibility
+  console.log("Dashboard button visibility:", { showDashboard, isCandidate, isLoading, pathname });
   
   return (
     <>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useUserRole } from "@/hooks/useUserRole";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { QUICK_ACTIONS } from "@/app/constants";
 import ActionCard from "@/components/ActionCard";
 import { useQuery } from "convex/react";
@@ -12,16 +12,47 @@ import LoaderUI from "@/components/LoaderUI";
 import { Loader2Icon, Code, Users, Calendar, Clock } from "lucide-react";
 import MeetingCard from "@/components/MeetingCard";
 import { useUser } from "@clerk/nextjs";
-import Navbar from "@/components/Navbar";
 
-export default function Home() {
+export default function Dashboard() {
+  const { user, isSignedIn } = useUser();
+  const router = useRouter();
   const { isInterviewer, isCandidate, isLoading } = useUserRole();
   const interviews = useQuery(api.interviews.getMyInterviews);
-  const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState<string>("");
-  const { user } = useUser();
+
+  // Debug user role states
+  useEffect(() => {
+    console.log("Dashboard access - User state:", { 
+      isSignedIn, 
+      firstName: user?.firstName,
+      isInterviewer, 
+      isCandidate, 
+      isLoading 
+    });
+  }, [isSignedIn, user, isInterviewer, isCandidate, isLoading]);
+
+  // Show loading state only while getting user role data
+  // Add a timeout to prevent indefinite loading
+  const [showSpinner, setShowSpinner] = useState(true);
   
+  useEffect(() => {
+    // Only show spinner for a maximum of 5 seconds to prevent indefinite loading
+    const timer = setTimeout(() => {
+      setShowSpinner(false);
+    }, 5000);
+    
+    // If data is loaded, clear the timer and don't show spinner
+    if (!isLoading) {
+      setShowSpinner(false);
+      clearTimeout(timer);
+    }
+    
+    return () => clearTimeout(timer);
+  }, [isLoading]);
+
+  if (showSpinner && isLoading) return <LoaderUI />;
+
   const firstName = user?.firstName || "";
 
   const handleQuickAction = (title: string) => {
@@ -71,11 +102,8 @@ export default function Home() {
     }
   ];
 
-  if(isLoading) return <LoaderUI />
-
   return (
     <>
-    <Navbar />
     <div className="container max-w-7xl mx-auto p-6">
       <div className="rounded-lg bg-card p-6 border shadow-sm mb-10">
         <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">

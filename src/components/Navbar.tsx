@@ -36,13 +36,14 @@ function Navbar() {
         </Link>
 
         {/* RIGHT SIDE - ACTIONS */}
+        <div className="flex items-center space-x-4 ml-auto">
+        <ModeToggle />
+        <DashboardBtn />
         <SignedIn>
-          <div className="flex items-center space-x-4 ml-auto">
-            <DashboardBtn />
-            <ModeToggle />
             <UserButton />
-          </div>
         </SignedIn>
+        </div>
+
       </div>
     </nav>
   );

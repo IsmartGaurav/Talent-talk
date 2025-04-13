@@ -23,8 +23,10 @@ export default function HomePage() {
         : { highlightFrom: 'from-blue-500', highlightTo: 'to-violet-500' };
 
     return (
+        <>
         <div className="container mx-auto px-4 py-12 space-y-16">
             {/* Hero Section */}
+            
             <section className="flex flex-col items-center justify-center text-center space-y-8 pt-10">
                 <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                     Welcome to <span className={`bg-clip-text text-transparent bg-gradient-to-r ${themeColors.highlightFrom} ${themeColors.highlightTo}`}>Talent Talk</span>
@@ -293,5 +295,6 @@ export default function HomePage() {
                 </div>
             </section>
         </div>
+        </>
     );
 }

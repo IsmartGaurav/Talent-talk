@@ -51,3 +51,54 @@ export const getUserByClerkId = query({
     return user;
   },
 });
+
+export const setUserRole = mutation({
+  args: {
+    clerkId: v.string(),
+    role: v.union(v.literal("candidate"), v.literal("interviewer")),
+  },
+  handler: async (ctx, args) => {
+    // Find the user by Clerk ID
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_clerk_id", (q) => q.eq("clerkId", args.clerkId))
+      .first();
+
+    if (!user) {
+      // If user doesn't exist, create a new one with minimal data
+      return await ctx.db.insert("users", {
+        clerkId: args.clerkId,
+        role: args.role,
+        hasSelectedRole: true, // Set this flag as well
+        name: "User", // Minimal placeholder
+        email: `${args.clerkId}@example.com`, // Placeholder email
+      });
+    }
+
+    // Update existing user's role and hasSelectedRole flag
+    return await ctx.db.patch(user._id, {
+      role: args.role,
+      hasSelectedRole: true, // Ensure this is updated too
+    });
+  },
+});
+
+// Migration helper to fix users without roles
+export const fixUserRoles = mutation({
+  handler: async (ctx) => {
+    const users = await ctx.db.query("users").collect();
+    let fixed = 0;
+    
+    for (const user of users) {
+      // @ts-ignore - checking if role is missing
+      if (!user.role) {
+        await ctx.db.patch(user._id, {
+          role: "candidate", // Default role
+        });
+        fixed++;
+      }
+    }
+    
+    return { fixed };
+  },
+});

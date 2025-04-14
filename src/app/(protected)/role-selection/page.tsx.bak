@@ -1,68 +1,19 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { User, Crown, CheckCircle2, Loader2 } from "lucide-react";
-import { useMutation, useQuery } from "convex/react";
-import { api } from "../../../../convex/_generated/api";
-import { useUser } from "@clerk/nextjs";
-import toast from "react-hot-toast";
+import { User, Crown, CheckCircle2 } from "lucide-react";
 
 const RoleSelectionPage = () => {
   const router = useRouter();
-  const { user, isSignedIn, isLoaded } = useUser();
-  const [loading, setLoading] = useState<string | null>(null);
-  
-  // Use setUserRole function (a simpler version that handles missing users)
-  const setUserRole = useMutation(api.users.setUserRole);
-  
-  const userData = useQuery(api.users.getUserByClerkId, 
-    isSignedIn && user?.id ? { clerkId: user.id } : "skip"
-  );
-  
-  // If user already has a role, redirect to dashboard
-  useEffect(() => {
-    if (isLoaded && userData && userData.role) {
-      router.push("/dashboard");
-    }
-  }, [userData, router, isLoaded]);
 
-  const handleRoleSelect = async (role: "candidate" | "interviewer") => {
-    if (!user || !isSignedIn) {
-      toast.error("You must be logged in to select a role");
-      return;
-    }
-    
-    setLoading(role);
-    
-    try {
-      console.log("Setting role for user:", user.id);
-      
-      await setUserRole({
-        clerkId: user.id,
-        role: role,
-      });
-      
-      toast.success(`You are now a ${role}`);
-      router.push("/dashboard");
-    } catch (error) {
-      console.error("Error setting role:", error);
-      toast.error("Failed to update your role. Please try again.");
-    } finally {
-      setLoading(null);
-    }
+  const handleRoleSelect = (role: "candidate" | "interviewer") => {
+    // Here you would set the user's role and redirect them
+    console.log(`Selected role: ${role}`);
+    // router.push("/dashboard");
   };
-
-  // Show loading state if user data is still loading
-  if (!isLoaded) {
-    return (
-      <div className="flex items-center justify-center min-h-[80vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
-  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] p-4 animate-in fade-in duration-700">
@@ -71,7 +22,7 @@ const RoleSelectionPage = () => {
         {/* Candidate Card */}
         <Card 
           className="relative overflow-hidden border-0 shadow-xl transition-all duration-300 hover:shadow-2xl hover:translate-y-[-5px] group cursor-pointer"
-          onClick={() => !loading && handleRoleSelect("candidate")}
+          onClick={() => handleRoleSelect("candidate")}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-700/30 dark:from-blue-700/30 dark:to-blue-900/40 opacity-70 group-hover:opacity-100 transition-opacity"></div>
           <div className="relative p-8 flex flex-col items-center">
@@ -87,20 +38,8 @@ const RoleSelectionPage = () => {
               <Feature text="Build confidence for real interviews" />
             </div>
             
-            <Button 
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-lg hover:shadow-xl" 
-              size="lg"
-              disabled={loading !== null}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleRoleSelect("candidate");
-              }}
-            >
-              {loading === "candidate" ? (
-                <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Selecting...</>
-              ) : (
-                "Select Candidate"
-              )}
+            <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-lg hover:shadow-xl" size="lg">
+              Select Candidate
             </Button>
           </div>
         </Card>
@@ -108,7 +47,7 @@ const RoleSelectionPage = () => {
         {/* Interviewer Card */}
         <Card 
           className="relative overflow-hidden border-0 shadow-xl transition-all duration-300 hover:shadow-2xl hover:translate-y-[-5px] group cursor-pointer"
-          onClick={() => !loading && handleRoleSelect("interviewer")}
+          onClick={() => handleRoleSelect("interviewer")}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-purple-700/30 dark:from-purple-700/30 dark:to-purple-900/40 opacity-70 group-hover:opacity-100 transition-opacity"></div>
           <div className="relative p-8 flex flex-col items-center">
@@ -124,20 +63,8 @@ const RoleSelectionPage = () => {
               <Feature text="Build your professional network" />
             </div>
             
-            <Button 
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white border-0 shadow-lg hover:shadow-xl" 
-              size="lg"
-              disabled={loading !== null}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleRoleSelect("interviewer");
-              }}
-            >
-              {loading === "interviewer" ? (
-                <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Selecting...</>
-              ) : (
-                "Select Interviewer"
-              )}
+            <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white border-0 shadow-lg hover:shadow-xl" size="lg">
+              Select Interviewer
             </Button>
           </div>
         </Card>
@@ -152,5 +79,30 @@ const Feature = ({ text }: { text: string }) => (
     <span className="text-sm">{text}</span>
   </div>
 );
+
+interface RoleCardProps {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  onClick: () => void;
+}
+
+const RoleCard = ({ title, description, icon, onClick }: RoleCardProps) => {
+  return (
+    <Card 
+      className="flex flex-col items-center p-6 hover:shadow-lg transition-all cursor-pointer border-2 hover:border-primary group"
+      onClick={onClick}
+    >
+      <div className="rounded-full p-4 bg-secondary text-secondary-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors mb-4">
+        {icon}
+      </div>
+      <h2 className="text-2xl font-semibold mb-2">{title}</h2>
+      <p className="text-muted-foreground text-center">{description}</p>
+      <Button className="mt-6 w-full" size="lg">
+        Select {title}
+      </Button>
+    </Card>
+  );
+};
 
 export default RoleSelectionPage;

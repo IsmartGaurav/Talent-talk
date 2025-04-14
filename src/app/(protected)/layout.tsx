@@ -4,6 +4,7 @@ import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { useEffect } from "react";
+import StreamVideoProvider from "@/components/providers/StreamClientProvider";
 
 export default function ProtectedLayout({
   children,
@@ -33,7 +34,9 @@ export default function ProtectedLayout({
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="px-4 sm:px-6 lg:px-8">{children}</main>
+      <StreamVideoProvider>
+        <main className="px-4 sm:px-6 lg:px-8">{children}</main>
+      </StreamVideoProvider>
     </div>
   );
 }

@@ -7,11 +7,20 @@ const useMeetingActions = () => {
   const client = useStreamVideoClient();
 
   const createInstantMeeting = async () => {
-    if (!client) return;
+    console.log("Creating instant meeting, client available:", !!client);
+    
+    if (!client) {
+      console.error("Stream Video client not initialized");
+      toast.error("Cannot create meeting. Please try again later.");
+      return;
+    }
 
     try {
       const id = crypto.randomUUID();
+      console.log("Generated meeting ID:", id);
+      
       const call = client.call("default", id);
+      console.log("Call object created:", !!call);
 
       await call.getOrCreate({
         data: {
@@ -22,10 +31,11 @@ const useMeetingActions = () => {
         },
       });
 
+      console.log("Meeting created successfully, redirecting to:", `/meeting/${call.id}`);
       router.push(`/meeting/${call.id}`);
       toast.success("Meeting Created");
     } catch (error) {
-      console.error(error);
+      console.error("Error creating meeting:", error);
       toast.error("Failed to create meeting");
     }
   };

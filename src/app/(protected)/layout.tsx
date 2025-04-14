@@ -1,10 +1,10 @@
 "use client";
 
-import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
 import { useEffect } from "react";
 import StreamVideoProvider from "@/components/providers/StreamClientProvider";
+import { useUserRole } from "@/hooks/useUserRole";
 
 export default function ProtectedLayout({
   children,
@@ -12,16 +12,16 @@ export default function ProtectedLayout({
   children: React.ReactNode;
 }) {
   const { isLoaded, isSignedIn } = useAuth();
+  const { hasSelectedRole, isLoading } = useUserRole();
   
-  // Use useEffect for client-side redirects
   useEffect(() => {
     if (isLoaded && !isSignedIn) {
       window.location.href = "/sign-in";
     }
   }, [isLoaded, isSignedIn]);
   
-  // While checking auth state, show nothing
-  if (!isLoaded) {
+  // While checking auth state or user role, show nothing
+  if (!isLoaded || isLoading) {
     return null;
   }
   
@@ -30,7 +30,6 @@ export default function ProtectedLayout({
     return null;
   }
   
-  // Only render the content if signed in
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -40,3 +39,6 @@ export default function ProtectedLayout({
     </div>
   );
 }
+
+
+

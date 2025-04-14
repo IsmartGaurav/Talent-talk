@@ -22,7 +22,8 @@ export const syncUser = mutation({
 
     const newUser = await ctx.db.insert("users", {
       ...args,
-      role: "candidate",
+      role: undefined, // Explicitly set as undefined
+      hasSelectedRole: false, // Explicitly set as false for new users
     });
     console.log("New user created:", newUser);
     return newUser;

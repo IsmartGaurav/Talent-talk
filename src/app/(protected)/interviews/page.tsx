@@ -15,13 +15,20 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CalendarIcon, CheckCircle2Icon, ClockIcon, XCircleIcon } from "lucide-react";
 import { format } from "date-fns";
 import CommentDialog from "@/components/CommentDialog";
+import { useUserRole } from "@/hooks/useUserRole";
+import { useRouter } from "next/navigation";
 
 type Interview = Doc<"interviews">;
 
-function DashboardPage() {
+function InterviewsPage() {
   const users = useQuery(api.users.getUsers);
   const interviews = useQuery(api.interviews.getAllInterviews);
   const updateStatus = useMutation(api.interviews.updateInterviewStatus);
+  const router = useRouter();
+  const { isInterviewer, isLoading } = useUserRole();
+
+  if (isLoading) return <LoaderUI />;
+  if (!isInterviewer) return router.push("/dashboard");
 
   const handleStatusUpdate = async (interviewId: Id<"interviews">, status: string) => {
     try {
@@ -124,4 +131,4 @@ function DashboardPage() {
     </div>
   );
 }
-export default DashboardPage;
+export default InterviewsPage;

@@ -28,20 +28,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ConvexClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ConvexClerkProvider>
             {children}
-          </ThemeProvider>
-          <Toaster />
-        </body>
-      </html>
-    </ConvexClerkProvider>
+            <Toaster />
+          </ConvexClerkProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

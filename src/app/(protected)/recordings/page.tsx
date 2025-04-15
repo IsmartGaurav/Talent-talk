@@ -6,10 +6,19 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import useGetCalls from "@/hooks/useGetCalls";
 import { CallRecording } from "@stream-io/video-react-sdk";
 import { useEffect, useState } from "react";
+import { useUserRole } from "@/hooks/useUserRole";
+import { useRouter } from "next/navigation";
 
 function RecordingsPage() {
-  const { calls, isLoading } = useGetCalls();
+  const { calls } = useGetCalls();
   const [recordings, setRecordings] = useState<CallRecording[]>([]);
+
+  const router = useRouter();
+
+  const { isInterviewer, isLoading } = useUserRole();
+
+  if (isLoading) return <LoaderUI />;
+  if (!isInterviewer) return router.push("/dashboard");
 
   useEffect(() => {
     const fetchRecordings = async () => {
@@ -28,8 +37,6 @@ function RecordingsPage() {
 
     fetchRecordings();
   }, [calls]);
-
-  if (isLoading) return <LoaderUI />;
 
   return (
     <div className="container max-w-7xl mx-auto p-6">

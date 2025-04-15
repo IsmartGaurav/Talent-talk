@@ -1,13 +1,15 @@
 import { DeviceSettings, useCall, VideoPreview } from "@stream-io/video-react-sdk";
 import { useEffect, useState } from "react";
 import { Card } from "./ui/card";
-import { CameraIcon, MicIcon, SettingsIcon } from "lucide-react";
+import { CameraIcon, MicIcon, SettingsIcon, Copy, CheckIcon } from "lucide-react";
 import { Switch } from "./ui/switch";
 import { Button } from "./ui/button";
+import toast from "react-hot-toast";
 
 function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
   const [isCameraDisabled, setIsCameraDisabled] = useState(true);
   const [isMicDisabled, setIsMicDisabled] = useState(false);
+  const [copying, setCopying] = useState(false);
 
   const call = useCall();
 
@@ -54,7 +56,25 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
               {/* MEETING DETAILS  */}
               <div>
                 <h2 className="text-xl font-semibold mb-1">Meeting Details</h2>
-                <p className="text-sm text-muted-foreground break-all">{call.id}</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-sm text-muted-foreground break-all">{call.id}</p>
+                  <button 
+                    onClick={() => {
+                      navigator.clipboard.writeText(call.id);
+                      toast.success("Meeting ID copied to clipboard");
+                      setCopying(true);
+                      setTimeout(() => setCopying(false), 1000);
+                    }}
+                    className="hover:bg-accent p-1 rounded-md transition-colors"
+                    title="Copy to clipboard"
+                  >
+                    {copying ? (
+                      <CheckIcon className="h-4 w-4 text-green-500" />
+                    ) : (
+                      <Copy className="h-4 w-4 text-muted-foreground" />
+                    )}
+                  </button>
+                </div>
               </div>
 
               <div className="flex-1 flex flex-col justify-between">

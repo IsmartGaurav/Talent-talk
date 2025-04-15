@@ -12,6 +12,10 @@ import LoaderUI from "@/components/LoaderUI";
 import { Loader2Icon, Code, Users, Calendar, Clock } from "lucide-react";
 import MeetingCard from "@/components/MeetingCard";
 import { useUser } from "@clerk/nextjs";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import BarChartIcon from "@/components/icons/BarChartIcon";
 
 export default function Dashboard() {
   const { user, isSignedIn } = useUser();
@@ -20,6 +24,8 @@ export default function Dashboard() {
   const interviews = useQuery(api.interviews.getMyInterviews);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState<string>("");
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   // Debug user role states
   useEffect(() => {
@@ -51,6 +57,10 @@ export default function Dashboard() {
     return () => clearTimeout(timer);
   }, [isLoading]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   if (showSpinner && isLoading) return <LoaderUI />;
 
   const firstName = user?.firstName || "";
@@ -76,29 +86,29 @@ export default function Dashboard() {
       title: "New Call",
       description: "Start an instant call",
       icon: <Code className="h-6 w-6" />,
-      className: "bg-gray-100 hover:bg-gray-200 dark:bg-zinc-900/90 dark:hover:bg-zinc-800/90 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-zinc-800",
-      iconClassName: "bg-gray-200 dark:bg-zinc-800"
+      className: "bg-gray-200 hover:bg-gray-300 dark:bg-zinc-900/90 dark:hover:bg-zinc-800/90 text-gray-900 dark:text-gray-100 border-gray-200 dark:border-zinc-800",
+      iconClassName: "bg-gray-300 dark:bg-zinc-800"
     },
     {
       title: "Join Interview",
       description: "Enter via invitation link",
       icon: <Users className="h-6 w-6" />,
-      className: "bg-purple-100 hover:bg-purple-200 dark:bg-purple-900/50 dark:hover:bg-purple-900/70 text-purple-900 dark:text-purple-100 border-purple-200 dark:border-purple-800",
-      iconClassName: "bg-purple-200 dark:bg-purple-800"
+      className: "bg-purple-200 hover:bg-purple-300 dark:bg-purple-900/50 dark:hover:bg-purple-900/70 text-purple-900 dark:text-purple-100 border-purple-200 dark:border-purple-800",
+      iconClassName: "bg-purple-300 dark:bg-purple-800"
     },
     {
       title: "Schedule",
       description: "Plan upcoming interviews",
       icon: <Calendar className="h-6 w-6" />,
-      className: "bg-blue-100 hover:bg-blue-200 dark:bg-blue-900/50 dark:hover:bg-blue-900/70 text-blue-900 dark:text-blue-100 border-blue-200 dark:border-blue-800",
-      iconClassName: "bg-blue-200 dark:bg-blue-800"
+      className: "bg-blue-200 hover:bg-blue-300 dark:bg-blue-900/50 dark:hover:bg-blue-900/70 text-blue-900 dark:text-blue-100 border-blue-200 dark:border-blue-800",
+      iconClassName: "bg-blue-300 dark:bg-blue-800"
     },
     {
       title: "Recordings",
       description: "Access past interviews",
       icon: <Clock className="h-6 w-6" />,
-      className: "bg-amber-100 hover:bg-amber-200 dark:bg-amber-900/50 dark:hover:bg-amber-900/70 text-amber-900 dark:text-amber-100 border-amber-200 dark:border-amber-800",
-      iconClassName: "bg-amber-200 dark:bg-amber-800"
+      className: "bg-amber-200 hover:bg-amber-300 dark:bg-amber-900/50 dark:hover:bg-amber-900/70 text-amber-900 dark:text-amber-100 border-amber-200 dark:border-amber-800",
+      iconClassName: "bg-amber-300 dark:bg-amber-800"
     }
   ];
 
@@ -106,9 +116,30 @@ export default function Dashboard() {
     <>
     <div className="container max-w-7xl mx-auto p-6">
       <div className="rounded-lg bg-card p-6 border shadow-sm mb-10">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-          Welcome back{firstName ? `, ${firstName}` : ""}!
-        </h1>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+          <div className="text-center sm:text-left">
+            <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent ${
+              mounted && resolvedTheme === "dark" 
+                ? "bg-gradient-to-r from-white to-gray-600" 
+                : "bg-gradient-to-r from-black to-gray-600"
+            }`}>
+              Welcome back{firstName ? `, ${firstName}` : ""}!
+            </h1>
+            <p className="text-muted-foreground mt-2">
+              {isInterviewer 
+                ? "Manage your interviews and review candidates effectively" 
+                : "Access your upcoming interviews and preparations"}
+            </p>
+          </div>
+          {isInterviewer && (
+            <Button asChild className="w-full sm:w-auto font-medium text-base">
+              <Link href="/interviews" className="flex items-center justify-center gap-2">
+                <BarChartIcon className="h-5 w-5" />
+                Interviews
+              </Link>
+            </Button>
+          )}
+        </div>
       </div>
       <p className="text-muted-foreground mt-2">
         {isInterviewer ? (

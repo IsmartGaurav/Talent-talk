@@ -29,10 +29,7 @@ function Navbar() {
           className="flex items-center gap-2 font-semibold text-2xl mr-6 font-mono hover:opacity-80 transition-opacity"
         >
           <img src={logoSrc} alt="Logo" className="h-8 w-auto object-contain" />
-          {/* <CodeIcon className="size-8 text-emerald-500" />
-          <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-            CodeSync
-          </span> */}
+ 
         </Link>
 
         {/* RIGHT SIDE - ACTIONS */}

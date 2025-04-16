@@ -8,8 +8,10 @@ const nextConfig = {
         hostname: "placehold.co",
       },
     ],
-    unoptimized: true,
+    unoptimized: false, // Change this to false for proper optimization
   },
+  // Add output configuration for better static file handling
+  output: 'standalone',
 };
 
 module.exports = nextConfig; 

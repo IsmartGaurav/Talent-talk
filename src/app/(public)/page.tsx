@@ -347,7 +347,7 @@ export default function HomePage() {
                         <div className="lg:col-span-7 relative animate-in fade-in slide-in-from-right-8 duration-1000 order-1 lg:order-2">
                             <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
                                 <Image
-                                    src={theme === 'dark' ? "/MainDark.png" : "/MainLight.png"}
+                                    src={theme === 'dark' ? "/MainDark.PNG" : "/MainLight.PNG"}
                                     alt="Talent Talk Interview Platform"
                                     layout="fill"
                                     objectFit="cover"
@@ -408,7 +408,7 @@ export default function HomePage() {
                             <div className="h-52 relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-br from-blue-300/30 via-blue-400/20 to-blue-500/30 dark:from-blue-500/20 dark:via-blue-600/15 dark:to-blue-700/20 animate-pulse"></div>
                                 <Image
-                                     src={theme === 'dark' ? "/HdDark.png" : "/HdLight.png"}
+                                     src={theme === 'dark' ? "/HdDark.PNG" : "/HdLight.PNG"}
                                     alt="HD Video Conferencing"
                                     width={600}
                                     height={400}
@@ -458,7 +458,7 @@ export default function HomePage() {
                             <div className="h-52 relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-300/30 via-indigo-400/20 to-indigo-500/30 dark:from-indigo-500/20 dark:via-indigo-600/15 dark:to-indigo-700/20 animate-pulse"></div>
                                 <Image
-                                    src="/code.png"
+                                    src="/code.PNG"
                                     alt="Interactive Code Editor"
                                     width={600}
                                     height={400}
@@ -508,7 +508,7 @@ export default function HomePage() {
                             <div className="h-52 relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-br from-teal-300/30 via-teal-400/20 to-teal-500/30 dark:from-teal-500/20 dark:via-teal-600/15 dark:to-teal-700/20 animate-pulse"></div>
                                 <Image
-                                     src={theme === 'dark' ? "/feedDark.png" : "/feedLight.png"}
+                                     src={theme === 'dark' ? "/feedDark.PNG" : "/feedLight.PNG"}
                                     alt="Feedback System"
                                     width={600}
                                     height={400}
@@ -558,7 +558,7 @@ export default function HomePage() {
                             <div className="h-52 relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-br from-teal-300/20 via-teal-400/15 to-teal-500/20 dark:from-teal-500/20 dark:via-teal-600/15 dark:to-teal-700/20 animate-pulse"></div>
                                 <Image
-                                    src={theme === 'dark' ? "/recordingDark.png" : "/recordingLight.png"}
+                                    src={theme === 'dark' ? "/recordingDark.PNG" : "/recordingLight.PNG"}
                                     alt="Recording Feature"
                                     width={600}
                                     height={400}

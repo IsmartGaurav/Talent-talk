@@ -111,7 +111,7 @@ export default function HomePage() {
                     <div className="w-full max-w-4xl mx-auto mt-12 relative animate-in fade-in zoom-in duration-1000 delay-500">
                         <div className="aspect-video relative rounded-xl overflow-hidden shadow-2xl border border-border/50 mt-10 group cursor-pointer">
                             <Image
-                                src={theme === 'dark' ? "/heroDark.png" : "/heroLight.png"}
+                                src={theme === 'dark' ? "/heroDark.PNG" : "/heroLight.PNG"}
                                 alt="Talent Talk Platform Interface"
                                 width={1200}
                                 height={675}

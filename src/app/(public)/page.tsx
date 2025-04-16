@@ -733,7 +733,7 @@ export default function HomePage() {
                                     <div className="pt-6 flex items-center gap-4">
                                         <div className="h-12 w-12 rounded-full overflow-hidden bg-gradient-to-br from-indigo-200 to-indigo-300 dark:from-indigo-800 dark:to-indigo-700 flex items-center justify-center shadow-sm">
                                             <Image
-                                                src="/sarah.jpg"
+                                                src="https://i.ibb.co/XfXC1rqK/Sarah.jpg"
                                                 alt="Sarah Chen"
                                                 width={48}
                                                 height={48}
